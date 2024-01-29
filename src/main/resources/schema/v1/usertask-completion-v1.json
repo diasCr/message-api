@@ -5,21 +5,28 @@
     "description": "A completion of an unsertask",
     "type": "object",
     "properties": {
-        "userId": {
-            "description": "The unique identifier for an user",
+        "customerId": {
+            "description": "The unique identifier for a customer",
             "type": "integer"
         },
-        "name": {
-            "description": "Name of the user",
+        "createdBy": {
+            "description": "Who has created the usertask",
             "type": "string"
         },
-        "age": {
-            "description": "Age of the user",
-            "type": "integer"
+        "outputData": {
+            "description": "JSON object containing output data for the usertask",
+            "type": "string"
+        },
+        "correlationData": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
         }
     },
     "required": [
-        "name",
-        "age"
+        "customerId",
+        "createdBy",
+        "outputData"
     ]
 }
