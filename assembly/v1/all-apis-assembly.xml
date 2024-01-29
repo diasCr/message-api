@@ -1,0 +1,15 @@
+<assembly>
+    <id>all-apis-v1</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>.</directory>
+            <includes>
+                <include>*.json</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

@@ -14,6 +14,59 @@
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <schemas-base-directory>${project.build.directory}/schema</schemas-base-directory>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-apis-v1</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${schemas-base-directory}/v1</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/schema/v1</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <appendAssemblyId>true</appendAssemblyId>
+                    <finalName>${project.artifactId}</finalName>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>package-all-api-v1</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archiveBaseDirectory>${schemas-base-directory}/v1</archiveBaseDirectory>
+                            <descriptors>
+                                <descriptor>assembly/v1/all-apis-assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
