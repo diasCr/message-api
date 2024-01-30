@@ -5,6 +5,10 @@
     "description": "A completion of an unsertask",
     "type": "object",
     "properties": {
+        "usertaskId": {
+            "description": "The unique identifier of an usertask",
+            "type": "string"
+        },
         "customerId": {
             "description": "The unique identifier for a customer",
             "type": "integer"
@@ -25,6 +29,7 @@
         }
     },
     "required": [
+        "usertaskId",
         "customerId",
         "createdBy",
         "outputData"
